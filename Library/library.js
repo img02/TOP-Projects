@@ -42,12 +42,12 @@ function displayBooks(){
             readStatus = "Not Read";                        
         }
         //toggle read button
-        tableData += `<td><button id="${book.title}_toggle_read">${readStatus}</button></td>`        
+        tableData += `<td><button id="${book.title}_toggle_read" class="readButton">${readStatus}</button></td>`        
 
         //delete buttons
         tableData +=
         `<td>
-            <button id="${book.title}_delete" value="${book.title}">Delete</button>
+            <button id="${book.title}_delete" value="${book.title}" class="readButton">Delete</button>
         </td>
         </tr>`;
     }    
