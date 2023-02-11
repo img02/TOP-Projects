@@ -1,7 +1,22 @@
 * {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 table, th, td {
     border:1px solid black;
   }
+
+#library_table {
+    margin: auto;    
+    padding: 0;
+}
+
+#form {
+    margin: 2% auto;
+    width: 1012px;
+}
+
+#todo {
+    margin: 2% auto;
+    width: 600px;
+}
