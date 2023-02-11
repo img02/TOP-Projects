@@ -23,6 +23,8 @@ function addBookToLibrary(book){
     myLibrary.push(book);
 }
 
+// forms table rows from current library
+// to add to the html table
 function displayBooks(){
     let tableData = ""
     for (let book of myLibrary) {        
@@ -37,8 +39,11 @@ function displayBooks(){
     addToLibraryTable(tableData);
 }
 
+// adds table row data to the html table
 function addToLibraryTable(tableData){
     table.innerHTML += tableData;
 }
+
+
 
 displayBooks();
