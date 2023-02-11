@@ -1,5 +1,12 @@
+:root{
+    --backgroundColour:#EBE0C9;
+    --readButtonColour: #6DA394;
+    --notReadButtonColour: #D46853;
+}
+
 * {
     font-size: 1.2rem;
+    background-color: var(--backgroundColour);
 }
 
 table, th, td {
@@ -23,4 +30,12 @@ table, th, td {
 
 .readButton{
     width: 105.6px;
+    
+}
+
+.read{
+    background-color: var(--readButtonColour);
+}
+.notRead{
+    background-color:var(--notReadButtonColour);
 }

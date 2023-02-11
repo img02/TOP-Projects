@@ -5,6 +5,8 @@ const pages = document.getElementById('add_book_pages');
 const read = document.getElementById('add_book_read');
 const form = document.getElementById('form');
 
+const notReadClassName = "notRead";
+const readClassName = "read";
 
 let myLibrary = [
     new Book('The Hobbit', 'J. R. R. Tolkien', 310, true),
@@ -38,16 +40,18 @@ function displayBooks(){
         <td>${book.pages}</td>`;
 
         let readStatus = "Read";
+        let readClass = readClassName;
         if (!book.read) {
             readStatus = "Not Read";                        
+            readClass = notReadClassName;
         }
         //toggle read button
-        tableData += `<td><button id="${book.title}_toggle_read" class="readButton">${readStatus}</button></td>`        
+        tableData += `<td><button id="${book.title}_toggle_read" class="readButton ${readClass}">${readStatus}</button></td>`        
 
         //delete buttons
         tableData +=
         `<td>
-            <button id="${book.title}_delete" value="${book.title}" class="readButton">Delete</button>
+            <button id="${book.title}_delete" value="${book.title}" >Delete</button>
         </td>
         </tr>`;
     }    
@@ -154,17 +158,22 @@ function hookReadButtons() {
             e.preventDefault(); // not needed?
             if (book.read) {
                 book.read = false;
-                readButton.innerHTML = "Not Read";
+                readButton.innerHTML = "Not Read";                
+                readButton.classList.remove(readClassName);
+                readButton.classList.add(notReadClassName);
             }
             else {
                 book.read = true;
                 readButton.innerHTML = "Read";
+                readButton.classList.remove(notReadClassName);
+                readButton.classList.add(readClassName);
+                
             }
         });
     }
 }
 
-///
+/// startup
 
 form.addEventListener("submit", (e)=> {
     e.preventDefault(); // stop form submit refreshing page
