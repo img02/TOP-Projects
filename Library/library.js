@@ -3,6 +3,7 @@ const title = document.getElementById('add_book_title');
 const author = document.getElementById('add_book_author');
 const pages = document.getElementById('add_book_pages');
 const read = document.getElementById('add_book_read');
+const form = document.getElementById('form');
 
 
 let myLibrary = [
@@ -50,10 +51,11 @@ function addToLibraryTable(tableData){
 }
 
 function addNewBook(){
-    if (title.value.length === 0 || author.value.length === 0 || pages.length === 0) {
-        alert("Please add all book informations.");
+    if (title.value.length === 0 || author.value.length === 0 || pages.value.length === 0) {
+        alert("Please add all book information.");
         return;
     }
+    
     let book = new Book(title.value, author.value, pages.value, read.checked);
     addBookToLibrary(book);
 }
@@ -66,7 +68,9 @@ function clearInputs(){
 }
 
 let addButton = document.getElementById('add_book_button');
-addButton.addEventListener("click", (e)=> {
+
+form.addEventListener("submit", (e)=> {
+    e.preventDefault(); // stop form submit refreshing page
     addNewBook();
     displayBooks();
     clearInputs();

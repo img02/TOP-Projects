@@ -9,11 +9,13 @@
 </head>
 <body>
      
-    <input type="text" required id="add_book_title">
-    <input type="text" required id="add_book_author">
-    <input type="number" required min="1" id="add_book_pages">
-    <input type="checkbox" id="add_book_read">
-    <button id="add_book_button" >Add Book</button>
+    <form onsubmit="" id="form">
+    <input type="text" id="add_book_title" placeholder="Title" required>
+    <input type="text" id="add_book_author" placeholder="Author" required>
+    <input type="number" min="1" id="add_book_pages" placeholder="Pages" required>
+    <input type="checkbox" id="add_book_read" >
+    <input type="submit" id="add_book_button" value="Add Book">
+    </form>
 
 
     <table id="library_table" style="width:70%">
