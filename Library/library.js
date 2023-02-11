@@ -1,4 +1,10 @@
-let myLibrary = [];
+const table = document.getElementById('library_table');
+
+let myLibrary = [
+    new Book('one', 'one author', 111, true),
+    new Book('two', 'two author', 222, false),
+    new Book('three', 'three author', 333, true)
+];
 
 function Book(title, author, pages, read){
     this.title = title
@@ -17,4 +23,22 @@ function addBookToLibrary(book){
     myLibrary.push(book);
 }
 
+function displayBooks(){
+    let tableData = ""
+    for (let book of myLibrary) {        
+        tableData += 
+        `<tr>
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.pages}</td>
+        <td>${book.read}</td>
+        </tr>`;
+    }
+    addToLibraryTable(tableData);
+}
 
+function addToLibraryTable(tableData){
+    table.innerHTML += tableData;
+}
+
+displayBooks();
