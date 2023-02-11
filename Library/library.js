@@ -7,9 +7,10 @@ const form = document.getElementById('form');
 
 
 let myLibrary = [
-    new Book('one', 'one author', 111, true),
-    new Book('two', 'two author', 222, false),
-    new Book('three', 'three author', 333, true)
+    new Book('The Hobbit', 'J. R. R. Tolkien', 310, true),
+    new Book('The Fellowship of the Ring', 'J. R. R. Tolkien', 423, false),
+    new Book('The Two Towers', 'J. R. R. Tolkien', 352, true),
+    new Book('The Return of the King', 'J. R. R. Tolkien', 416, false)
 ];
 
 function Book(title, author, pages, read){
@@ -34,14 +35,59 @@ function displayBooks(){
         `<tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
-        <td>${book.pages}</td>
-        <td>${book.read}</td>
-        <td>
+        <td>${book.pages}</td>`;
+
+        let readStatus = "Read";
+        if (!book.read) {
+            readStatus = "Not Read";                        
+        }
+        //toggle read button
+        tableData += `<td><button id="${book.title}_toggle_read">${readStatus}</button></td>`        
+
+        //delete buttons
+        tableData +=
+        `<td>
             <button id="${book.title}_delete" value="${book.title}">Delete</button>
         </td>
         </tr>`;
     }    
     addToLibraryTable(tableData);
+}
+
+
+/*
+   ADD BOOK FUNCTIONS
+*/
+
+function addBookToLibrary(book){
+    myLibrary.push(book);
+}
+
+// adds table row data to the html table
+// then hook delete buttons to delete function
+function addToLibraryTable(tableData){
+    tableBody.innerHTML = tableData;
+    hookDeleteButtons();
+    hookReadButtons();
+}
+
+function addNewBook(){
+    if (title.value.length === 0 || author.value.length === 0 || pages.value.length === 0 || read.value.length === 0) {
+        alert("Please add all book information.");
+        return;
+    }       
+    let readStatus;
+    if (read.value === "Read") { readStatus = true;}
+
+    let book = new Book(title.value, author.value, pages.value, readStatus);
+    addBookToLibrary(book);
+}
+
+function clearInputs(){    
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    read.checked = false;
 }
 
 /*
@@ -51,9 +97,7 @@ function displayBooks(){
 function deleteBook(book){
     console.log(`deleting book: ${book.title}`);
     let deleteIndex = myLibrary.indexOf(book);
-
-    //could use switch statement
-
+   
     /*
     // if deleting first book, just shift
     if (deleteIndex === 0) {
@@ -65,7 +109,6 @@ function deleteBook(book){
         myLibrary.pop();
         return;
     }
-
     //otherwise, if removing from the middle somewhere,
     // split arrays and rejoin, excluding the book to be deleted
     let startArr = myLibrary.slice(0, deleteIndex);
@@ -73,6 +116,7 @@ function deleteBook(book){
     myLibrary = Array.prototype.concat(startArr, endArr);
     */
 
+    //cleaner looking with a switch statement
     switch (deleteIndex) {
         case 0 :
             myLibrary.shift();
@@ -101,34 +145,23 @@ function hookDeleteButtons(){
 }
 
 /*
-   ADD BOOK FUNCTIONS
+    TOGGLE READ FUNCTION
 */
-
-function addBookToLibrary(book){
-    myLibrary.push(book);
-}
-
-// adds table row data to the html table
-// then hook delete buttons to delete function
-function addToLibraryTable(tableData){
-    tableBody.innerHTML = tableData;
-    hookDeleteButtons();
-}
-
-function addNewBook(){
-    if (title.value.length === 0 || author.value.length === 0 || pages.value.length === 0) {
-        alert("Please add all book information.");
-        return;
-    }       
-    let book = new Book(title.value, author.value, pages.value, read.checked);
-    addBookToLibrary(book);
-}
-
-function clearInputs(){    
-    title.value = "";
-    author.value = "";
-    pages.value = "";
-    read.checked = false;
+function hookReadButtons() {
+    for (let book of myLibrary) {
+        let readButton = document.getElementById(`${book.title}_toggle_read`);
+        readButton.addEventListener("click", (e) =>{
+            e.preventDefault(); // not needed?
+            if (book.read) {
+                book.read = false;
+                readButton.innerHTML = "Not Read";
+            }
+            else {
+                book.read = true;
+                readButton.innerHTML = "Read";
+            }
+        });
+    }
 }
 
 ///

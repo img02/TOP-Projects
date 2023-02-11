@@ -13,7 +13,10 @@
     <input type="text" id="add_book_title" placeholder="Title" required>
     <input type="text" id="add_book_author" placeholder="Author" required>
     <input type="number" min="1" id="add_book_pages" placeholder="Pages" required>
-    <input type="checkbox" id="add_book_read" >
+    <select id="add_book_read" required>
+        <option value="Not Read">Not Read</option>        
+        <option value="Read">Read</option>
+    </select>
     <input type="submit" id="add_book_button" value="Add Book">
     </form>
 
@@ -28,6 +31,7 @@
         <tbody id="library-table-body"></tbody>
     </table>
    
+    <p>ToDo: add css styling and formatting / flexbox stuff. Pretty it up.</p>
     
     <script src="library.js"></script>
 </body>
