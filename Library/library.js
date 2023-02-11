@@ -1,4 +1,9 @@
-const table = document.getElementById('library_table');
+const tableBody = document.getElementById('library-table-body');
+const title = document.getElementById('add_book_title');
+const author = document.getElementById('add_book_author');
+const pages = document.getElementById('add_book_pages');
+const read = document.getElementById('add_book_read');
+
 
 let myLibrary = [
     new Book('one', 'one author', 111, true),
@@ -41,9 +46,30 @@ function displayBooks(){
 
 // adds table row data to the html table
 function addToLibraryTable(tableData){
-    table.innerHTML += tableData;
+    tableBody.innerHTML = tableData;
 }
 
+function addNewBook(){
+    if (title.value.length === 0 || author.value.length === 0 || pages.length === 0) {
+        alert("Please add all book informations.");
+        return;
+    }
+    let book = new Book(title.value, author.value, pages.value, read.checked);
+    addBookToLibrary(book);
+}
 
+function clearInputs(){    
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    read.checked = false;
+}
+
+let addButton = document.getElementById('add_book_button');
+addButton.addEventListener("click", (e)=> {
+    addNewBook();
+    displayBooks();
+    clearInputs();
+    });
 
 displayBooks();

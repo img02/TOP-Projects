@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+     
+    <input type="text" required id="add_book_title">
+    <input type="text" required id="add_book_author">
+    <input type="number" required min="1" id="add_book_pages">
+    <input type="checkbox" id="add_book_read">
+    <button id="add_book_button" >Add Book</button>
+
+
     <table id="library_table" style="width:70%">
         <tr>
             <th>Title</th>
@@ -15,8 +23,10 @@
             <th>pages</th>
             <th>Read</th>
         </tr>
+        <tbody id="library-table-body"></tbody>
     </table>
-    <script src="library.js"></script>
+   
     
+    <script src="library.js"></script>
 </body>
 </html>
