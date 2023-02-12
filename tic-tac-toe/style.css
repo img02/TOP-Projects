@@ -2,17 +2,25 @@
 .game_board_grid {
     display: grid;
   grid-template-columns: auto auto auto;
+  margin: 5% auto 2% auto;
+  width: 306px;
+  height: 306px;
   background-color: #2196F3;
-  padding: 10px;
+  padding: 10px;  
 }
+
 .game_square {
   background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.8);  
+  font-size: 30px;  
   text-align: center;
+  width: 100px;
+  height: 70px;
+  padding: 30px 0 0 0;
 }
 
 #play_button {
     color: #2196F3;
+    display: block;
+    margin: auto;
 }
