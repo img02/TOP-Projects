@@ -238,7 +238,7 @@ const display = (() => {
         subscribePlayButton();
     };
 
-    return { setup, updateGameBoard };
+    return { setup };
 })();
 
 // startup code
