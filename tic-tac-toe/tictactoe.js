@@ -24,7 +24,7 @@ const playerFactory = (name, piece) => ({ name, piece });
 
 const game = (() => {
     // state
-    const gameBoard = ["x", "x", "X", "o", "o", "o", "X", "o", "x"];
+    const gameBoard = ["", "", "", "", "", "", "", "", ""];
     let state = playingState; // playing, won
     const playerOne = playerFactory("Player One", "X");
     const playerTwo = playerFactory("Player Two", "O");
