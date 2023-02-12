@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-     
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <form onsubmit="" id="form">
-    <input type="text" id="add_book_title" placeholder="Title" required>
-    <input type="text" id="add_book_author" placeholder="Author" required>
-    <input type="number" min="1" id="add_book_pages" placeholder="Pages" required>
-    <select id="add_book_read" required>
-        <option value="Not Read">Not Read</option>        
+      <input type="text" id="add_book_title" placeholder="Title" required />
+      <input type="text" id="add_book_author" placeholder="Author" required />
+      <input
+        type="number"
+        min="1"
+        id="add_book_pages"
+        placeholder="Pages"
+        required
+      />
+      <select id="add_book_read" required>
+        <option value="Not Read">Not Read</option>
         <option value="Read">Read</option>
-    </select>
-    <input type="submit" id="add_book_button" value="Add Book">
+      </select>
+      <input type="submit" id="add_book_button" value="Add Book" />
     </form>
 
-
-    <table id="library_table" style="width:70%">
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>pages</th>
-            <th>Read</th>
-        </tr>
-        <tbody id="library-table-body"></tbody>
+    <table id="library_table" style="width: 70%">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>pages</th>
+        <th>Read</th>
+      </tr>
+      <tbody id="library-table-body"></tbody>
     </table>
-   
-    <p id="todo">ToDo: add css styling and formatting / flexbox stuff. Pretty it up.</p>
-    
+
+    <p id="todo">
+      ToDo: add css styling and formatting / flexbox stuff. Pretty it up.
+    </p>
+
     <script src="library.js"></script>
-</body>
+  </body>
 </html>
