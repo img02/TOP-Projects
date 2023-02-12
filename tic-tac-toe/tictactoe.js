@@ -1,4 +1,6 @@
-const gameBoard = ["", "", "", "", "", "", "", "", ""];
+/* eslint-disable no-plusplus */
+const gameBoard = ["x", "x", "X", "o", "o", "o", "X", "o", "x"];
+// const gameBoard = ["", "", "", "", "", "", "", "", ""];
 
 // create gameboard factory or module?
 // newBoard
@@ -70,6 +72,30 @@ function subscribeGameboardClicks() {
         });
     });
 }
+
+/* draw game board grid */
+function drawGameBoard() {
+    const body = document.getElementsByTagName("body");
+    const grid = document.createElement("grid");
+    grid.textContent = "fdsafasd";
+    grid.classList.add("game_board_grid");
+    body[0].appendChild(grid);
+    for (let i = 0; i < gameBoard.length; i++) {
+        const gameSquare = document.createElement("div");
+        // set class and id
+        gameSquare.classList.add("game_square");
+        gameSquare.id = `game_square_${i}`;
+        gameSquare.textContent = gameBoard[i];
+        // append to board grid
+        grid.appendChild(gameSquare);
+    }
+}
+
+function updateGameBoard() {}
+
+// startup code
+
+drawGameBoard();
 
 const playButton = document.getElementById("play_button");
 playButton.addEventListener("click", (e) => {
