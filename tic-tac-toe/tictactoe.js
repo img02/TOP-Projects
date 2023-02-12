@@ -4,30 +4,46 @@
 /**
  *  HTML elements class names / Ids
  */
-const gameBoardClass = "game_board_grid";
 const gameSquareClass = "game_square";
+
+const gameBoardId = "game_board_grid";
 const playButtonID = "play_button";
+const winnerTextId = "winner_text";
+
+const playButtonPlayText = "Play Game";
+const playButtonRestartText = "Restart";
+
+/**
+ *  game states
+ */
+
+const wonState = "won";
+const playingState = "playing";
 
 const playerFactory = (name, piece) => ({ name, piece });
 
 const game = (() => {
     // state
     const gameBoard = ["x", "x", "X", "o", "o", "o", "X", "o", "x"];
-    let state = "playing"; // playing, won
-    let playerOne;
-    let playerTwo;
-    let currentPlayer;
+    let state = playingState; // playing, won
+    const playerOne = playerFactory("Player One", "X");
+    const playerTwo = playerFactory("Player Two", "O");
+    let currentPlayer = playerOne;
     // functions for starting a game
     const clearBoard = () => {
         for (let i = 0; i < gameBoard.length; i++) {
             gameBoard[i] = "";
         }
     };
-    const newGame = (nameOne, nameTwo) => {
-        playerOne = playerFactory(nameOne, "X");
-        playerTwo = playerFactory(nameTwo, "O");
+    const newGame = () => {
+        state = playingState;
+        clearBoard();
+    };
+    const newGameWithPlayerNames = (nameOne, nameTwo) => {
+        playerOne.name = nameOne;
+        playerTwo.name = nameTwo;
         currentPlayer = playerOne;
-        state = "playing";
+        state = playingState;
         clearBoard();
     };
 
@@ -37,25 +53,74 @@ const game = (() => {
         if (gameBoard[move] !== "") return false;
         return true;
     };
-    function hasGameWon() {
-        return false;
+    function hasGameWon(move, piece) {
         // check squares around placed piece
         // corners are 0, 2, 6, 8
+        if (move === 0) {
+            if (gameBoard[1] === piece && gameBoard[2] === piece) return true; // +1 +2
+            if (gameBoard[3] === piece && gameBoard[6] === piece) return true;
+            if (gameBoard[4] === piece && gameBoard[8] === piece) return true;
+            return false;
+        }
+        if (move === 2) {
+            if (gameBoard[0] === piece && gameBoard[1] === piece) return true;
+            if (gameBoard[5] === piece && gameBoard[8] === piece) return true;
+            if (gameBoard[4] === piece && gameBoard[6] === piece) return true;
+            return false;
+        }
+        if (move === 6) {
+            if (gameBoard[0] === piece && gameBoard[3] === piece) return true;
+            if (gameBoard[7] === piece && gameBoard[8] === piece) return true;
+            if (gameBoard[4] === piece && gameBoard[2] === piece) return true;
+            return false;
+        }
+        if (move === 8) {
+            if (gameBoard[6] === piece && gameBoard[7] === piece) return true;
+            if (gameBoard[5] === piece && gameBoard[2] === piece) return true;
+            if (gameBoard[4] === piece && gameBoard[0] === piece) return true;
+            return false;
+        }
 
         // mid-sides are 1, 3, 5, 7
+        // checking through middle
+        if (move === 1 || move === 7) {
+            if (
+                gameBoard[1] === piece &&
+                gameBoard[4] === piece &&
+                gameBoard[7] === piece
+            )
+                return true;
+        }
+        if (move === 3 || move === 5) {
+            if (
+                gameBoard[3] === piece &&
+                gameBoard[4] === piece &&
+                gameBoard[5] === piece
+            )
+                return true;
+        }
 
-        // middle is 4
-
-        //
+        // checking through sides
+        if (move === 1 || move === 7 || move === 4) {
+            if (gameBoard[move - 1] === piece && gameBoard[move + 1] === piece)
+                return true; // +-1
+        }
+        if (move === 3 || move === 5 || move === 4) {
+            if (gameBoard[move - 3] === piece && gameBoard[move + 3] === piece)
+                return true; // +- 3
+        }
+        return false;
     }
     // returns true if winning move
     const makeMove = (move) => {
+        if (state === wonState) return true;
+        console.log(`placing ${currentPlayer.piece} to position ${move}`);
         if (!validateMove(move)) return false;
         // place players piece and change current player
         gameBoard[move] = currentPlayer.piece;
 
-        if (hasGameWon()) {
-            state = "won";
+        if (hasGameWon(move, currentPlayer.piece)) {
+            state = wonState;
             return true;
         }
 
@@ -63,7 +128,17 @@ const game = (() => {
         return false;
     };
 
-    return { newGame, makeMove, state, gameBoard, currentPlayer };
+    const getCurrentPlayer = () => currentPlayer;
+    const getGameState = () => state;
+
+    return {
+        newGame,
+        newGameWithPlayerNames,
+        makeMove,
+        getGameState,
+        getCurrentPlayer,
+        gameBoard
+    };
 })();
 
 /*
@@ -71,18 +146,27 @@ const game = (() => {
 */
 
 const display = (() => {
+    // html elements
+    const body = document.getElementsByTagName("body")[0];
+    const playButton = document.createElement("button");
+
     // update game state
     const updateGameBoard = () => {
         // todo, update html grid values
+        const grid = document.getElementById(gameBoardId);
+        for (let i = 0; i < game.gameBoard.length; i++) {
+            grid.childNodes[i].textContent = game.gameBoard[i];
+        }
+
         // check if winner
     };
 
     /* draw game board grid and button */
-    const body = document.getElementsByTagName("body");
+
     function drawGameBoard() {
         const grid = document.createElement("grid");
-        grid.classList.add(gameBoardClass);
-        body[0].appendChild(grid);
+        grid.id = gameBoardId;
+        body.appendChild(grid);
         for (let i = 0; i < game.gameBoard.length; i++) {
             const gameSquare = document.createElement("div");
             // set class and id
@@ -94,11 +178,31 @@ const display = (() => {
         }
     }
     function addPlayButton() {
-        const playButton = document.createElement("button");
         playButton.id = playButtonID;
-        playButton.textContent = "Start Game";
-        body[0].appendChild(playButton);
+        playButton.textContent = playButtonPlayText;
+        body.appendChild(playButton);
     }
+
+    /**
+     *  Winner Text add/update
+     */
+    const winnerText = document.createElement("div");
+    function updateWinnerText(player) {
+        if (game.getGameState() === wonState) {
+            winnerText.textContent = `${player.name} wins! with piece ${player.piece}`;
+            winnerText.style.visibility = "visible";
+        } else {
+            winnerText.textContent = "";
+            winnerText.style.visibility = "hidden";
+        }
+    }
+    function addWinnerText(player) {
+        winnerText.id = winnerTextId;
+        winnerText.style.visibility = "hidden";
+        updateWinnerText(player);
+        body.appendChild(winnerText);
+    }
+
     /* 
     Subscribe to the click events on the game board / grid + button
  */
@@ -107,25 +211,29 @@ const display = (() => {
         for (let i = 0; i < board.length; i++) {
             board[i].addEventListener("click", (e) => {
                 e.preventDefault();
-                game.makeMove();
+                if (game.makeMove(i)) {
+                    updateWinnerText(game.getCurrentPlayer());
+                    playButton.textContent = playButtonPlayText;
+                }
                 updateGameBoard();
-                console.log(`square ${i} clicked`);
             });
         }
     }
     function subscribePlayButton() {
-        const playButton = document.getElementById(playButtonID);
-        playButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            // hide button
-            game.newGame();
-            console.log(`play clicked`);
+        playButton.addEventListener("click", () => {
+            playButton.textContent = playButtonRestartText;
+            // hide button ?
+            // game.newGame() // starts new game with default names
+            game.newGameWithPlayerNames("Player One", "Player Two"); // hardcoded player names
+            updateWinnerText(game.getCurrentPlayer());
+            updateGameBoard();
         });
     }
     // set up the page
     const setup = () => {
         drawGameBoard();
         addPlayButton();
+        addWinnerText();
         subscribeGameboardClicks();
         subscribePlayButton();
     };

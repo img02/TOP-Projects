@@ -1,5 +1,5 @@
 
-.game_board_grid {
+#game_board_grid {
     display: grid;
   grid-template-columns: auto auto auto;
   margin: 5% auto 2% auto;
@@ -23,4 +23,12 @@
     color: #2196F3;
     display: block;
     margin: auto;
+}
+
+#winner_text {
+    background-color: #E6C363;
+    text-align: center;
+    
+    margin: 1%;
+    padding: 1%;
 }
