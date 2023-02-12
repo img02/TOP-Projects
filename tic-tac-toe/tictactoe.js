@@ -1,107 +1,133 @@
 /* eslint-disable no-plusplus */
-const gameBoard = ["x", "x", "X", "o", "o", "o", "X", "o", "x"];
+
 // const gameBoard = ["", "", "", "", "", "", "", "", ""];
 
-// create gameboard factory or module?
-// newBoard
-// resetBoard
-// checkIfWin() -> returns string winning piece, or returns bool, called after every move?
-// makeMove(piece, position) -> bool -> checkValidMove(position)
+const playerFactory = (name, piece) => ({ name, piece });
 
-// totalMoves
-// state = playing, won
+const game = (() => {
+    // state
+    const gameBoard = ["x", "x", "X", "o", "o", "o", "X", "o", "x"];
+    let state = "playing"; // playing, won
+    let playerOne;
+    let playerTwo;
+    let currentPlayer;
+    // functions for starting a game
+    const clearBoard = () => {
+        for (let i = 0; i < gameBoard.length; i++) {
+            gameBoard[i] = "";
+        }
+    };
+    const newGame = (nameOne, nameTwo) => {
+        playerOne = playerFactory(nameOne, "X");
+        playerTwo = playerFactory(nameTwo, "O");
+        currentPlayer = playerOne;
+        state = "playing";
+        clearBoard();
+    };
 
-// or create a 'game' object that has a gameBoard and two players?
-// basically a viewModel, with 2 models
+    // making moves
+    const validateMove = (move) => {
+        if (move < 0 || move > gameBoard.length - 1) return false;
+        if (gameBoard[move] !== "") return false;
+        return true;
+    };
+    function hasGameWon() {
+        return false;
+        // check squares around placed piece
+        // corners are 0, 2, 6, 8
 
-function createPlayer(name, icon) {
-    // name
-    // piece / icon
-    // wins
-    // losses
-}
+        // mid-sides are 1, 3, 5, 7
 
-///
+        // middle is 4
+
+        //
+    }
+    // returns true if winning move
+    const makeMove = (move) => {
+        if (!validateMove(move)) return false;
+        // place players piece and change current player
+        gameBoard[move] = currentPlayer.piece;
+
+        if (hasGameWon()) {
+            state = "won";
+            return true;
+        }
+
+        currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+        return false;
+    };
+
+    return { newGame, makeMove, state, gameBoard, currentPlayer };
+})();
 
 /*
-    Functions for playing the game
-        and making moves
+     display game on web page
 */
-function updateBoardInfo() {
-    // update the html of the game info
-    // current player to move..
-    // current move..
-    // etc.
-}
 
-function makeMove(player) {
-    const move = getMove(player);
-    gameBoard.makeMove(player.piece, move);
-    updateBoardInfo();
-    // return true if game won with this move.
-    if (gameBoard.state === "won") return true;
-    return false;
-}
+const display = (() => {
+    // update game state
+    const updateGameBoard = () => {
+        // todo, update html grid values
+        // check if winner
+    };
 
-function getMove(player) {
-    // validates and return the move...
-}
-
-function gameLoop() {
-    if (makeMove(playerOne)) return;
-    if (makeMove(playerTwo)) return;
-}
-
-function startGame() {
-    while (gameBoard.state === "playing") {
-        gameLoop();
-    }
-    showWinner();
-    showPlayButton();
-}
-
-/* 
-    Subscribe to the click evens on the game board / grid
- */
-function subscribeGameboardClicks() {
-    const board = document.getElementsByClassName("gameBoardSquare");
-    board.forEach((square) => {
-        square.addEventListener("click", (e) => {
-            e.preventDefault();
-            game.MakeMove();
-        });
-    });
-}
-
-/* draw game board grid */
-function drawGameBoard() {
+    /* draw game board grid and button */
     const body = document.getElementsByTagName("body");
-    const grid = document.createElement("grid");
-    grid.textContent = "fdsafasd";
-    grid.classList.add("game_board_grid");
-    body[0].appendChild(grid);
-    for (let i = 0; i < gameBoard.length; i++) {
-        const gameSquare = document.createElement("div");
-        // set class and id
-        gameSquare.classList.add("game_square");
-        gameSquare.id = `game_square_${i}`;
-        gameSquare.textContent = gameBoard[i];
-        // append to board grid
-        grid.appendChild(gameSquare);
+    function drawGameBoard() {
+        const grid = document.createElement("grid");
+        grid.textContent = "fdsafasd";
+        grid.classList.add("game_board_grid");
+        body[0].appendChild(grid);
+        for (let i = 0; i < game.gameBoard.length; i++) {
+            const gameSquare = document.createElement("div");
+            // set class and id
+            gameSquare.classList.add("game_square");
+            gameSquare.id = `game_square_${i}`;
+            gameSquare.textContent = game.gameBoard[i];
+            // append to board grid
+            grid.appendChild(gameSquare);
+        }
     }
-}
+    function addPlayButton() {
+        const playButton = document.createElement("button");
+        playButton.id = "play_button";
+        playButton.textContent = "Start Game";
+        body[0].appendChild(playButton);
+    }
+    /* 
+    Subscribe to the click events on the game board / grid + button
+ */
+    function subscribeGameboardClicks() {
+        const board = document.getElementsByClassName("game_square");
+        for (let i = 0; i < board.length; i++) {
+            board[i].addEventListener("click", (e) => {
+                e.preventDefault();
+                game.makeMove();
+                updateGameBoard();
+                console.log(`square ${i} clicked`);
+            });
+        }
+    }
+    function subscribePlayButton() {
+        const playButton = document.getElementById("play_button");
+        playButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            // hide button
+            game.newGame();
+            console.log(`play clicked`);
+        });
+    }
+    // set up the page
+    const setup = () => {
+        drawGameBoard();
+        addPlayButton();
+        subscribeGameboardClicks();
+        subscribePlayButton();
+    };
 
-function updateGameBoard() {}
+    return { setup, updateGameBoard };
+})();
 
 // startup code
 
-drawGameBoard();
-
-const playButton = document.getElementById("play_button");
-playButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    // hide button
-    startGame();
-});
-
-subscribeGameboardClicks();
+display.setup();
