@@ -22,6 +22,9 @@ const playingState = "playing";
 
 const playerFactory = (name, piece) => ({ name, piece });
 
+/**
+ *  Game module, manages moves, validation, and game state
+ */
 const game = (() => {
     // state
     const gameBoard = ["", "", "", "", "", "", "", "", ""];
@@ -149,6 +152,7 @@ const display = (() => {
     // html elements
     const body = document.getElementsByTagName("body")[0];
     const playButton = document.createElement("button");
+    const winnerText = document.createElement("div");
 
     // update game state
     const updateGameBoard = () => {
@@ -177,6 +181,7 @@ const display = (() => {
             grid.appendChild(gameSquare);
         }
     }
+
     function addPlayButton() {
         playButton.id = playButtonID;
         playButton.textContent = playButtonPlayText;
@@ -186,7 +191,7 @@ const display = (() => {
     /**
      *  Winner Text add/update
      */
-    const winnerText = document.createElement("div");
+
     function updateWinnerText(player) {
         if (game.getGameState() === wonState) {
             winnerText.textContent = `${player.name} wins! with piece ${player.piece}`;
@@ -196,6 +201,7 @@ const display = (() => {
             winnerText.style.visibility = "hidden";
         }
     }
+
     function addWinnerText(player) {
         winnerText.id = winnerTextId;
         winnerText.style.visibility = "hidden";
@@ -205,7 +211,7 @@ const display = (() => {
 
     /* 
     Subscribe to the click events on the game board / grid + button
- */
+    */
     function subscribeGameboardClicks() {
         const board = document.getElementsByClassName(gameSquareClass);
         for (let i = 0; i < board.length; i++) {
