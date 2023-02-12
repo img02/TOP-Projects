@@ -1,6 +1,12 @@
 /* eslint-disable no-plusplus */
 
 // const gameBoard = ["", "", "", "", "", "", "", "", ""];
+/**
+ *  HTML elements class names / Ids
+ */
+const gameBoardClass = "game_board_grid";
+const gameSquareClass = "game_square";
+const playButtonID = "play_button";
 
 const playerFactory = (name, piece) => ({ name, piece });
 
@@ -75,13 +81,12 @@ const display = (() => {
     const body = document.getElementsByTagName("body");
     function drawGameBoard() {
         const grid = document.createElement("grid");
-        grid.textContent = "fdsafasd";
-        grid.classList.add("game_board_grid");
+        grid.classList.add(gameBoardClass);
         body[0].appendChild(grid);
         for (let i = 0; i < game.gameBoard.length; i++) {
             const gameSquare = document.createElement("div");
             // set class and id
-            gameSquare.classList.add("game_square");
+            gameSquare.classList.add(gameSquareClass);
             gameSquare.id = `game_square_${i}`;
             gameSquare.textContent = game.gameBoard[i];
             // append to board grid
@@ -90,7 +95,7 @@ const display = (() => {
     }
     function addPlayButton() {
         const playButton = document.createElement("button");
-        playButton.id = "play_button";
+        playButton.id = playButtonID;
         playButton.textContent = "Start Game";
         body[0].appendChild(playButton);
     }
@@ -98,7 +103,7 @@ const display = (() => {
     Subscribe to the click events on the game board / grid + button
  */
     function subscribeGameboardClicks() {
-        const board = document.getElementsByClassName("game_square");
+        const board = document.getElementsByClassName(gameSquareClass);
         for (let i = 0; i < board.length; i++) {
             board[i].addEventListener("click", (e) => {
                 e.preventDefault();
@@ -109,7 +114,7 @@ const display = (() => {
         }
     }
     function subscribePlayButton() {
-        const playButton = document.getElementById("play_button");
+        const playButton = document.getElementById(playButtonID);
         playButton.addEventListener("click", (e) => {
             e.preventDefault();
             // hide button
