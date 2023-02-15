@@ -23,6 +23,7 @@ const viewManager = (() => {
     let deleteFunc;
     let addFunc;
     let getList;
+    let updateLocalStorage;
     const body = document.getElementsByTagName("body")[0];
     const descriptionList = document.createElement("dl");
     descriptionList.id = listId;
@@ -88,6 +89,7 @@ const viewManager = (() => {
             createItemDescription(arr[i], i, deleteFunc);
         }
         descriptionList.append(addButton);
+        updateLocalStorage(JSON.stringify(getList()));
     };
 
     function addItem(name, description, date) {
@@ -198,10 +200,11 @@ const viewManager = (() => {
         };
     }
 
-    const startUp = (deleteFn, addFn, getListFn) => {
+    const startUp = (deleteFn, addFn, getListFn, updateLocalStorageFn) => {
         deleteFunc = deleteFn;
         addFunc = addFn;
         getList = getListFn;
+        updateLocalStorage = updateLocalStorageFn;
 
         drawList();
         updateView();

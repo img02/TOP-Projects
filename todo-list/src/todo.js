@@ -47,8 +47,11 @@ const toDo = (() => {
         }
     };
     const getList = () => list;
+    const loadFromStorage = (value) => {
+        list = JSON.parse(value);
+    };
 
-    return { addItem, deleteItem, getList };
+    return { addItem, deleteItem, getList, loadFromStorage };
 })();
 
 export default toDo;
