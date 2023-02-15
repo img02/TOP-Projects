@@ -1,4 +1,95 @@
-:root{
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Source Code Pro', monospace;
+:root {
+    font-family: "Bebas Neue", cursive;
+    font-family: "Source Code Pro", monospace;
+    background-color: #888;
+}
+
+/* modal base from https://www.w3schools.com/howto/howto_css_modals.asp*/
+/* The Modal (background) */
+#modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#modal-content {
+    background-color: #888;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+
+    border-style: outset;
+    border-width: 4px;
+
+    width: 25%;
+    height: 40%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-button {
+    margin-top: 8px;
+    align-self: flex-end;
+}
+.modal-input {
+    margin-bottom: 5px;
+}
+.modal-input {
+    margin: 1% 25% 1% 1%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#description-list {
+    display: flex;
+    flex-direction: column;
+    padding: 2% 35% 1% 35%;
+
+    border-style: inset;
+    border-width: 2px;
+}
+
+.description-div,
+.modal-input-div {
+    display: flex;
+    flex-direction: column;
+    border-style: inset;
+    border-width: 1px;
+    margin: 5px 0 10px 0;
+    padding: 2px 5px 5px 5px;
+}
+
+.delete-button {
+    width: 50px;
+    height: 22px;
+    align-self: flex-end;
+}
+
+#add-button {
+    align-self: flex-end;
+}
+
+p {
+    margin: 5px;
 }
