@@ -13,7 +13,35 @@
         />
     </head>
     <body>
-        test
+        <div id="top">
+            <div id="location-div">
+                <h1>location name.</h1>
+                <div>
+                    <input
+                        type="text"
+                        name="location"
+                        id="location-input"
+                        placeholder="this is where the user can input a custom location for weather data"
+                        size="100"
+                    />
+                </div>
+            </div>
+
+            <div id="todays-info-div">humidity, wind, etc.</div>
+        </div>
+
+        <div id="bottom">
+            <div id="weather-main">
+                <!-- daily weather divs -->
+                <div class="weather-daily">mon</div>
+                <div class="weather-daily">tue</div>
+                <div class="weather-daily">wed</div>
+                <div class="weather-daily">thur</div>
+                <div class="weather-daily">fri</div>
+                <div class="weather-daily">sat</div>
+                <div class="weather-daily">sun</div>
+            </div>
+        </div>
     </body>
     <script src="main.js"></script>
 </html>
