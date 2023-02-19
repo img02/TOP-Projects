@@ -1,0 +1,53 @@
+:root {
+    font-family: "Bebas Neue", cursive;
+    font-family: "Source Code Pro", monospace;
+    background-color: #888;
+}
+
+body {
+    background-color: aliceblue;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#top {
+    background-color: blue;
+    display: flex;
+    height: 60%;
+}
+
+#location-div {
+    background-color: beige;
+    width: 50%;
+}
+#todays-info-div {
+    background-color: antiquewhite;
+    width: 50%;
+    justify-content: right;
+    text-align: right;
+}
+
+/* weather forecast styling */
+#bottom {
+    background-color: blueviolet;
+    height: 40%;
+}
+
+#weather-main {
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+
+    height: 100%;
+}
+
+.weather-daily {
+    background-color: aquamarine;
+    width: 20%;
+    text-align: center;
+
+    border-style: inset;
+    border-width: 2px;
+    height: calc(100%-border-width);
+}
