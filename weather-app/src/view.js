@@ -55,7 +55,7 @@ const view = (() => {
             minTemp.textContent = WeatherData.usingMetric
                 ? `Min: ${day.minTemp}°C`
                 : `Min: ${day.minTemp}°F`;
-            humid.textContent = `$Humidity: ${day.humidity}%`;
+            humid.textContent = `Humidity: ${day.humidity}%`;
 
             prevDay = day.day;
             dayNum += 1;

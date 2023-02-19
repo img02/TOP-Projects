@@ -5,24 +5,20 @@
 }
 
 body {
-    background-color: aliceblue;
     height: 100vh;
     margin: 0;
     padding: 0;
 }
 
 #top {
-    background-color: blue;
     display: flex;
     height: 60%;
 }
 
 #location-div {
-    background-color: beige;
     width: 50%;
 }
 #todays-info-div {
-    background-color: antiquewhite;
     width: 50%;
     justify-content: right;
     text-align: right;
@@ -30,12 +26,10 @@ body {
 
 /* weather forecast styling */
 #bottom {
-    background-color: blueviolet;
     height: 40%;
 }
 
 #weather-main {
-    background-color: beige;
     display: flex;
     justify-content: center;
 
@@ -43,7 +37,6 @@ body {
 }
 
 .weather-daily {
-    background-color: aquamarine;
     width: 20%;
     text-align: center;
 
