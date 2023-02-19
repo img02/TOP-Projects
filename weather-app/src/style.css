@@ -2,6 +2,7 @@
     font-family: "Bebas Neue", cursive;
     font-family: "Source Code Pro", monospace;
     background-color: #888;
+    font-size: clamp(1.5vh, 30px, 1.5vw);
 }
 
 body {
