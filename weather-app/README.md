@@ -2,7 +2,7 @@
 
 A weather forecast webapp
 
-Created using data from the opanweathermap API: https://openweathermap.org/
+Created using data from the openweathermap API: https://openweathermap.org/
 
 Current weather: https://openweathermap.org/current  
 Weekly forecast: https://openweathermap.org/forecast5
