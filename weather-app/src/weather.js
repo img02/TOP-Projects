@@ -59,10 +59,10 @@ class Weather {
         this.country = country;
         this.sunrise = new Date(sunrise).toTimeString();
         this.sunset = new Date(sunset).toTimeString();
-        this.#getDay(date);
+        this.#setDay(date);
     }
 
-    #getDay(date) {
+    #setDay(date) {
         const dateFormatted = new Date(date * 1000); // api returns date in unix time seconds Date() needs milliseconds
         const day = dateFormatted.getDay();
 
@@ -139,7 +139,7 @@ const WeatherData = (() => {
             console.log("Current:");
             console.log(currentWeather);
         } catch {
-            console.log(`Error: ${data.message}`);
+            console.log(`Error: ${data.message} @ ${currentWeatherAPIUrl}`);
         }
     }
 
@@ -188,14 +188,14 @@ const WeatherData = (() => {
             console.log("Current:");
             console.log(weeklyWeather);
         } catch {
-            console.log(`Error: ${data.message}`);
+            console.log(`Error: ${data.message} @ ${weeklyWeatherAPIUrl}`);
         }
     }
 
-    function startup() {
-        // get current wetaher, get daily wteah
-        getCurrentWeatherFromAPI();
-        getWeeklyWeatherFromAPI();
+    async function update() {
+        // get current wetaher, get daily weather
+        await getCurrentWeatherFromAPI();
+        await getWeeklyWeatherFromAPI();
     }
 
     function getCurrentWeather() {
@@ -205,23 +205,27 @@ const WeatherData = (() => {
         return weeklyWeather;
     }
 
-    function setLocation(newlocation) {
+    async function setLocation(newlocation) {
         location = newlocation;
-        getCurrentWeather();
-        getWeeklyWeather();
+        await update();
     }
 
     function useMetric(use) {
         if (use) unit = "metric";
         else unit = "imperial";
     }
+    function usingMetric() {
+        if (unit === "metric") return true;
+        return false;
+    }
 
     return {
-        startup,
+        update,
         getCurrentWeather,
         getWeeklyWeather,
         setLocation,
-        useMetric
+        useMetric,
+        usingMetric
     };
 })();
 

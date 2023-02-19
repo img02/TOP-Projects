@@ -1,4 +1,4 @@
-import WeatherData from "../weather";
+import display from "./view";
 import "./style.css";
 
 /*  weather API module
@@ -14,4 +14,4 @@ import "./style.css";
     draw default html elements -> show weekly temp as default -> 7 divs (same class) in another flex div?
 */
 
-WeatherData.startup();
+display.startup();
