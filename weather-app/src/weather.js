@@ -101,7 +101,7 @@ const WeatherData = (() => {
     let location = "London";
 
     async function getCurrentWeatherFromAPI() {
-        const currentWeatherAPIUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit}&&APPID=${apiKey}`;
+        const currentWeatherAPIUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit}&&APPID=${apiKey}`;
         const res = await fetch(currentWeatherAPIUrl);
         const data = await res.json();
         try {
@@ -144,7 +144,7 @@ const WeatherData = (() => {
     }
 
     async function getWeeklyWeatherFromAPI() {
-        const weeklyWeatherAPIUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=${unit}&&APPID=${apiKey}`;
+        const weeklyWeatherAPIUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=${unit}&&APPID=${apiKey}`;
         const res = await fetch(weeklyWeatherAPIUrl);
         const data = await res.json();
         try {

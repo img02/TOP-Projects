@@ -71,14 +71,13 @@ const view = (() => {
         console.time();
         await WeatherData.update();
         console.timeEnd();
-
         update();
+
         locationInput.addEventListener("keyup", async (e) => {
             e.preventDefault();
             if (e.key === "Enter") {
                 await WeatherData.setLocation(locationInput.value);
                 update();
-                console.log("enter pressed!");
             }
         });
     }
