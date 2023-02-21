@@ -101,7 +101,18 @@ export default class LinkedList {
     // bonus
 
     insertAt(value, index) {
-        if (index < 0 || index >= this.size) return;
+        if (index < 0 || index > this.size) return;
+        // if inserting at start of list, just prepend
+        if (index === 0) {
+            this.prepend(value);
+            return;
+        }
+        // if inserting at end of list, append
+        if (index === this.size) {
+            this.append(value);
+            return;
+        }
+
         const node = new Node(value, null);
         // find the node before the insertion index
         const prevNode = this.at(index - 1);
@@ -113,6 +124,19 @@ export default class LinkedList {
 
     removeAt(index) {
         if (index < 0 || index >= this.size) return;
+        // if index is at end of list, just pop off
+        if (index === this.size - 1) {
+            this.pop();
+            return;
+        }
+        // if index is head of list
+        if (index === 0) {
+            this.head = this.head.next;
+            // bit of repeat code here, but I think it's better than if/else
+            this.size -= 1;
+            return;
+        }
+
         // find the node before the removal index
         const prevNode = this.at(index - 1);
         // assign next node to the next-next node, thereby removing the middle node.

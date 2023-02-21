@@ -45,8 +45,16 @@ function test() {
     // insertAt
     list.insertAt(4, 4);
     console.log(`Insert at index: 4, value: 4:\t\t ${list.toString()}`);
+    list.insertAt(-1, 0);
+    console.log(`Insert at index: 0, value: -1:\t\t ${list.toString()}`);
+    list.insertAt(7, 8);
+    console.log(`Insert at index: 8, value: 7:\t\t ${list.toString()}`);
 
     // removeAt
+    list.removeAt(8);
+    console.log(`Remove at index: 8:\t\t\t ${list.toString()}`);
+    list.removeAt(0);
+    console.log(`Remove at index: 0:\t\t\t ${list.toString()}`);
     list.removeAt(4);
     console.log(`Remove at index: 4:\t\t\t ${list.toString()}`);
 
