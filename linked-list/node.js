@@ -1,4 +1,4 @@
-class Node {
+export default class Node {
     constructor(value, next) {
         this.value = value;
         this.next = next;
@@ -12,5 +12,3 @@ class Node {
         return `( ${this.value} )`;
     }
 }
-
-module.exports = Node;
