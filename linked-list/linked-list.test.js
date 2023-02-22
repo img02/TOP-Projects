@@ -8,11 +8,11 @@ it("Initial Size", () => {
 });
 
 it("Head Null", () => {
-    expect(list.head).toBe(null);
+    expect(list.head).toBeNull();
 });
 
 it("Tail Null", () => {
-    expect(list.tail).toBe(null);
+    expect(list.tail).toBeNull();
 });
 
 // append
