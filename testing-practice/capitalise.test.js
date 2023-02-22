@@ -1,4 +1,4 @@
-import { capitalise } from "./capitalise";
+import capitalise from "./capitalise";
 
 test("Capitalise sentence: 'hello world!'", () => {
     expect(capitalise("hello world!")).toBe("Hello world!");
