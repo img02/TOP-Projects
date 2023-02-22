@@ -48,11 +48,11 @@ it("Tail val is now 3", () => {
 
 // contains
 it("Contains 2", () => {
-    expect(list.contains(2)).toBe(true);
+    expect(list.contains(2)).toBeTruthy();
 });
 
 it("Doesn't contain 9", () => {
-    expect(list.contains(9)).toBe(false);
+    expect(list.contains(9)).toBeFalsy();
 });
 
 // find
@@ -60,7 +60,7 @@ it("Find 2 returns index 1", () => {
     expect(list.find(2)).toBe(1);
 });
 it("Find 9 returns null", () => {
-    expect(list.find(9)).toBe(null);
+    expect(list.find(9)).toBeNull();
 });
 
 // pop
