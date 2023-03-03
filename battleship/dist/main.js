@@ -1,0 +1,1 @@
+(()=>{"use strict";var t={length:4,hitCount:0,sunk:!1,hit:function(){this.hitCount+=1,this.hitCount===this.length&&(this.sunk=!0)}};console.log(JSON.parse(JSON.stringify(t))),t.hit(),console.log(JSON.parse(JSON.stringify(t))),t.hit(),console.log(JSON.parse(JSON.stringify(t))),t.hit(),console.log(JSON.parse(JSON.stringify(t)))})();
