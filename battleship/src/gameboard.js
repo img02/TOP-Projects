@@ -76,13 +76,18 @@ const gameboardFactory = () => {
         return true;
     }
 
+    function gameOver() {
+        return !ships.some((shipInfo) => shipInfo.ship.isSunk() === false);
+    }
+
     return {
         missedAttacks,
         hitAttacks,
         takenSpots,
         ships,
         placeShip,
-        receiveAttack
+        receiveAttack,
+        gameOver
     };
 };
 
