@@ -52,7 +52,7 @@ test("receive attack on already hit position returns false", () => {
 test("gameboard tracks missed attack spots", () => {
     const gameboard = gameboardFactory();
     gameboard.receiveAttack(0, 0);
-    const result = gameboard.missedAttacks.length === 1;
+    const result = gameboard.missedAttacks.length;
     expect(result).toBe(1);
 });
 
