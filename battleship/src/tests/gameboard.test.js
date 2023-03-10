@@ -22,7 +22,7 @@ test("can't place ship on taken gameboard space", () => {
 test("receive attack on empty space misses", () => {
     const gameboard = gameboardFactory();
     const result = gameboard.receiveAttack(0, 0);
-    expect(result).toBeFalsy();
+    expect(result).toBeTruthy();
 });
 
 test("receive attack on ship space hits and updates ship hit count", () => {
@@ -31,7 +31,22 @@ test("receive attack on ship space hits and updates ship hit count", () => {
     gameboard.receiveAttack(0, 0);
     // idk
     const result = gameboard.missedAttacks.length === 0;
-    expect(result).toBe(0);
+    expect(result).toBeTruthy();
+});
+
+test("receive attack on already missed position returns false", () => {
+    const gameboard = gameboardFactory();
+    gameboard.receiveAttack(0, 0);
+    const result = gameboard.receiveAttack(0, 0);
+    expect(result).toBeFalsy();
+});
+
+test("receive attack on already hit position returns false", () => {
+    const gameboard = gameboardFactory();
+    gameboard.placeShip(0, 0, 1, true);
+    gameboard.receiveAttack(0, 0);
+    const result = gameboard.receiveAttack(0, 0);
+    expect(result).toBeFalsy();
 });
 
 test("gameboard tracks missed attack spots", () => {

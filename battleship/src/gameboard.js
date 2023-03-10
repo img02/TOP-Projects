@@ -4,6 +4,7 @@ const gameboardFactory = () => {
     const takenSpots = [];
     const ships = [];
     const missedAttacks = [];
+    const hitAttacks = [];
 
     function shipSpotFree(coords) {
         const startPositionTaken = takenSpots.some(
@@ -45,16 +46,44 @@ const gameboardFactory = () => {
         return true;
     }
 
-    /*
-    *
-    Gameboards should have a receiveAttack function that takes a pair of coordinates, 
-    determines whether or not the attack hit a ship and 
-    then sends the ‘hit’ function to the correct ship, 
-    or records the coordinates of the missed shot.
-     */
+    function positionAlreadyAttacked(x, y) {
+        const coordTest = (coords) => coords[0] === x && coords[1] === y;
+        const alreaydMissed = missedAttacks.some((coords) => coordTest(coords));
+        const alreadyHit = hitAttacks.some((coords) => coordTest(coords));
+        return alreaydMissed || alreadyHit;
+    }
 
-    // function receiveAttack(x, y) {}
-    return { missedAttacks, takenSpots, ships, placeShip };
+    function receiveAttack(x, y) {
+        if (positionAlreadyAttacked(x, y)) return false;
+
+        let shipFound = false;
+        let hitShip = null;
+        ships.forEach((shipInfo) => {
+            if (
+                shipInfo.coords.some(
+                    (coord) => coord[0] === x && coord[1] === y
+                )
+            ) {
+                shipFound = true;
+                hitShip = shipInfo.ship;
+            }
+        });
+        if (!shipFound) missedAttacks.push([x, y]);
+        else {
+            hitShip.hit();
+            hitAttacks.push([x, y]);
+        }
+        return true;
+    }
+
+    return {
+        missedAttacks,
+        hitAttacks,
+        takenSpots,
+        ships,
+        placeShip,
+        receiveAttack
+    };
 };
 
 export default gameboardFactory;
