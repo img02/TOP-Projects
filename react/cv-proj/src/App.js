@@ -11,8 +11,8 @@ class App extends Component {
             Name: "test",
             FirstName: "",
             LastName: "",
-            Email: "",
-            Phone: ""
+            Email: "fake@email.com",
+            Phone: "01-23-45-67"
         };
         this.updatePersonInfoBtnClicked =
             this.updatePersonInfoBtnClicked.bind(this);
@@ -20,17 +20,13 @@ class App extends Component {
 
     updatePersonInfoBtnClicked() {
         const name = document.getElementsByClassName("person-name")[0].value;
-        // const email =
-        //     document.getElementsByClassName("person-email")[0].textContent;
-        // const phone =
-        //     document.getElementsByClassName("person-phone")[0].textContent;
+        const email = document.getElementsByClassName("person-email")[0].value;
+        const phone = document.getElementsByClassName("person-phone")[0].value;
         this.setState({
-            Name: name
-            // Email: email,
-            // Phone: phone
+            Name: name,
+            Email: email,
+            Phone: phone
         });
-        console.log(name);
-        console.log(`hello  ${this.state.Name}`);
     }
 
     render() {

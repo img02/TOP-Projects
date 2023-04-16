@@ -6,9 +6,28 @@ export default class PersonInfoComponent extends Component {
         return (
             <div className="person-root">
                 <p className="person-text">This is the person info component</p>
-                <p>{this.props.Name}</p>
+
                 <label>Name: </label>
-                <input className="person-name" type={"text"} />
+                <input
+                    className="person-name"
+                    type={"text"}
+                    defaultValue={this.props.Name}
+                />
+
+                <label>Email: </label>
+                <input
+                    className="person-email"
+                    type={"email"}
+                    defaultValue={this.props.Email}
+                />
+
+                <label>Phone: </label>
+                <input
+                    className="person-phone"
+                    type={"text"}
+                    defaultValue={this.props.Phone}
+                />
+
                 <button onClick={this.props.updateBtnClicked}>Update</button>
             </div>
         );
