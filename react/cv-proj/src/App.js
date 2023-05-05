@@ -3,6 +3,7 @@ import "./Assets/App.css";
 import { Component } from "react";
 import PersonInfoComponent from "./Components/PersonInfo";
 import Resume from "./Components/Resume";
+import EducationInfoComponent from "./Components/EducationInfo";
 
 class App extends Component {
     constructor() {
@@ -41,10 +42,14 @@ class App extends Component {
                     Phone={this.state.Phone}
                     updateBtnClicked={this.updatePersonInfoBtnClicked}
                 />
+                <EducationInfoComponent
+                // add props here
+                />
                 <Resume
                     Name={this.state.Name}
                     Email={this.state.Email}
                     Phone={this.state.Phone}
+                    //add education info data here
                 />
             </div>
         );
