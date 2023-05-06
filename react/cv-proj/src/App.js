@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./Assets/App.css";
 import { Component } from "react";
 import PersonInfoComponent from "./Components/PersonInfo";
@@ -9,14 +8,18 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            Name: "test",
+            Name: "Fake Name",
             FirstName: "",
             LastName: "",
             Email: "fake@email.com",
-            Phone: "01-23-45-67"
+            Phone: "012-345-678",
+            //Education: [{ Institution: "1", Title: "2", Date: "" }],
+            Education: []
         };
         this.updatePersonInfoBtnClicked =
             this.updatePersonInfoBtnClicked.bind(this);
+        this.updateEducationInfoBtnClicked =
+            this.updateEducationInfoBtnClicked.bind(this);
     }
 
     updatePersonInfoBtnClicked() {
@@ -30,12 +33,26 @@ class App extends Component {
         });
     }
 
+    updateEducationInfoBtnClicked() {
+        const institution = document.getElementsByClassName(
+            "education-institution"
+        )[0].value;
+        const title =
+            document.getElementsByClassName("education-title")[0].value;
+        const date = document.getElementsByClassName("education-date")[0].value;
+
+        this.setState({
+            Education: [
+                ...this.state.Education,
+                { Institution: institution, Title: title, Date: date }
+            ]
+        });
+    }
+
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                </header>
+                <header className="App-header-temp"></header>
                 <PersonInfoComponent
                     Name={this.state.Name}
                     Email={this.state.Email}
@@ -43,12 +60,15 @@ class App extends Component {
                     updateBtnClicked={this.updatePersonInfoBtnClicked}
                 />
                 <EducationInfoComponent
-                // add props here
+                    Education={this.state.Education}
+                    updateBtnClicked={this.updateEducationInfoBtnClicked}
+                    // add props here
                 />
                 <Resume
                     Name={this.state.Name}
                     Email={this.state.Email}
                     Phone={this.state.Phone}
+                    Education={this.state.Education}
                     //add education info data here
                 />
             </div>
