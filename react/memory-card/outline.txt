@@ -1,0 +1,47 @@
+Memory card game
+
+basics:   
+    - page with randomly arranged 'cards'
+    - score shown somewhere on screen (top corner?)
+    - user must click on 'cards' to score
+    - clicking of previously clicked 'card' results in game over
+
+
+
+
+impl outline: keep it simple
+
+-   Show some card components
+        -   card consists of:
+            - id
+            - imgSrc
+            - ??
+
+        -   first just display numbered text
+        -   Add images later (random cats + dogs?)
+        -   onClick
+            => fn(id) 
+                {
+                    if (prevClickedArr contains clicked, lose)
+                    else score++
+                }
+
+-   Save clicked cards to array 
+        -   useMemo?
+        -   global / top parent state?
+
+-    when card clicked
+        - if not prev clicked
+            - increase score
+            
+        - if already clicked 
+            - reset score to 0
+            - show popup / modal component
+                - "game over"
+                - "your score: {score}"
+        - rearrange card order randomly
+
+-   scoreboard component?
+        - or just draw on main app render
+        -   KISS
+        
