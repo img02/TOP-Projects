@@ -1,12 +1,14 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Cards from "./components/cards";
+import Cards from "./components/Cards";
 import Cats from "./Cats";
 
 const App = () => {
     const [score, setScore] = useState(0);
     const [cardHistory, setCardHistory] = useState([]);
     const [images, setImages] = useState([]);
+    const [lost, setLost] = useState(false);
+    const [hiScore, setHiScore] = useState(0);
 
     useEffect(() => {
         //Cats.getImages().then(setImages);
@@ -19,6 +21,7 @@ const App = () => {
 
     const increaseScore = () => {
         setScore(score + 1);
+        setLost(false);
     };
     const resetScore = () => {
         setScore(0);
@@ -30,7 +33,12 @@ const App = () => {
         // "game over!"
         // "you scored: {finalScore}"
         console.log(`Game Over! :${finalScore}`);
+        updateHighScore();
         resetScore();
+        setLost(true);
+    };
+    const updateHighScore = () => {
+        if (hiScore < score) setHiScore(score);
     };
 
     const cardClicked = (id) => {
@@ -51,7 +59,7 @@ const App = () => {
         let randomIndex;
 
         // While there remain elements to shuffle.
-        while (currentIndex != 0) {
+        while (currentIndex !== 0) {
             // Pick a remaining element.
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
@@ -67,9 +75,10 @@ const App = () => {
     }
 
     return (
-        <div>
-            <p>Score: {score}</p>
+        <div className="main-div">
+            <p className={lost ? "score-lost" : "score"}>Score: {score}</p>
             <Cards images={images} cardClicked={cardClicked} />
+            <p>Hi-Score: {hiScore}</p>
         </div>
     );
 };

@@ -1,0 +1,20 @@
+.cards-grid-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.card-image-div {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-style: inset;
+    border-width: 2px;
+}
+
+.card-image {
+    width: 100px;
+    height: 100px;
+}
