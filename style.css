@@ -1,11 +1,11 @@
 body {
     /*https://cssgradient.io/swatches/*/
     background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .proj_grid {
-    display: grid;  
+    display: grid;
     border: #d53369;
     margin: 5% auto;
 }
@@ -14,4 +14,12 @@ body {
     margin: 10px;
     text-align: center;
     font-size: 30px;
+}
+h3 {
+    color: purple;
+}
+
+hr.solid {
+    border-top: 1px solid purple;
+    width: 100%;
 }
