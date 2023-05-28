@@ -1,0 +1,30 @@
+
+Router
+ /          /store
+Home page - Store page
+    -   Shopping cart (persistent)
+
+
+shopping cart  
+    - product name
+    - product id
+    - price
+    - quantity
+
+product
+    - name
+    - id
+    - img srs
+    - price
+    - quantity in stock ? (may be unnecessary funcionality for this proj)
+
+store page
+    - display items from hardcoded product array
+    - individual buttons to add to cart - fn updating state from app.js
+
+nav bar
+    - Home Page link
+    - Store Page link
+    - Shopping Cart - toggles shopping cart modal, on right side? like a lot of online stores.
+    
+
