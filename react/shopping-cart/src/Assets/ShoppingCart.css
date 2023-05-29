@@ -1,5 +1,5 @@
 .shopping-cart-main-hidden {
-    right: -110%;
+    right: -30%;
 }
 
 .shopping-cart-main-shown {
@@ -18,8 +18,13 @@
     position: fixed;
     top: 0px;
     bottom: 0px;
-    transition: right 0.85s ease-in-out 0s;
+    transition: right 0.55s ease-in-out 0s;
 
     width: 22%;
     min-width: 450px;
+
+    overflow: auto;
+    /* firefox - hide scrollbar */
+    scrollbar-width: none;
+    scroll-behavior: smooth;
 }
