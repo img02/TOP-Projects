@@ -1,4 +1,5 @@
 import NavBar from "./Components/NavBar";
+import ShoppingCart from "./Components/ShoppingCart";
 import RouteSwitch from "./Router/RouteSwitch";
 
 const App = () => {
@@ -8,10 +9,20 @@ const App = () => {
     // add fn to 'checkout' (don't need to impl page)
     // pass functions to routeswitch -> store/home page
 
+    const toggleCartVisibility = () => {
+        const cartElement = document.getElementById("shopping-cart-main");
+        cartElement.className =
+            cartElement.className === "shopping-cart-main-hidden"
+                ? "shopping-cart-main-shown"
+                : "shopping-cart-main-hidden";
+    };
+
     return (
         <div>
             <NavBar />
+            <ShoppingCart />
             <RouteSwitch />
+            <button onClick={toggleCartVisibility}>cart</button>
         </div>
     );
 };
