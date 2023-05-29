@@ -1,10 +1,10 @@
-const addToCart = (item, quantity, setState, cart) => {
+const addToCart = (item, setState, cart) => {
     const existingItem = cart.find((i) => i.id === item.id);
 
     if (existingItem !== undefined) {
         updateCartQuantity(
             existingItem.id,
-            quantity + existingItem.quantity,
+            item.quantity + existingItem.quantity,
             setState,
             cart
         );
@@ -15,7 +15,7 @@ const addToCart = (item, quantity, setState, cart) => {
         name: item.name,
         id: item.id,
         price: item.price,
-        quantity: quantity
+        quantity: item.quantity
     };
     const newCart = cart.slice();
     newCart.push(newItem);

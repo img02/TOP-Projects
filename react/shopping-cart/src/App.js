@@ -18,12 +18,8 @@ const App = () => {
     ];
     const [cart, setCart] = useState(testCart);
 
-    const updateCart = (cart) => {
-        setCart(cart);
-    };
-
-    const addItemToCart = (item, quantity) => {
-        addToCart(item, quantity, setCart, cart);
+    const addItemToCart = (item) => {
+        addToCart(item, setCart, cart);
     };
     const updateCartItemQuantity = (id, quantity) => {
         updateCartQuantity(id, quantity, setCart, cart);
