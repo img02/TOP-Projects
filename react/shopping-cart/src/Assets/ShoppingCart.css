@@ -1,14 +1,25 @@
 .shopping-cart-main-hidden {
-    visibility: hidden;
-    height: 0;
-    width: 0;
+    right: -110%;
 }
 
 .shopping-cart-main-shown {
-    visibility: visible;
+    right: 0px;
+}
+
+.shopping-cart-main-shown,
+.shopping-cart-main-hidden {
     border-style: inset;
     border-width: 3px;
-    background-color: #888888c9;
+    background-color: #a4a4a4;
+
     margin: 5px 5px;
     padding: 5px 5px;
+
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    transition: right 0.85s ease-in-out 0s;
+
+    width: 22%;
+    min-width: 450px;
 }
