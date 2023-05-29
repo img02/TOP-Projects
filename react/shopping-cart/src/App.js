@@ -2,6 +2,7 @@ import { useState } from "react";
 import NavBar from "./Components/NavBar";
 import ShoppingCart from "./Components/ShoppingCart";
 import RouteSwitch from "./Router/RouteSwitch";
+import { addToCart, updateCartQuantity } from "./lib/Cart";
 
 const App = () => {
     // add shopping cart state here and component here
@@ -21,29 +22,11 @@ const App = () => {
         setCart(cart);
     };
 
-    const updateCartQuantity = (id, quantity) => {
-        const item = cart.find((i) => i.id === id);
-        if (item === undefined) return;
-
-        const index = cart.indexOf(item);
-
-        // add start of cart
-        let newCart = cart.slice(0, index);
-
-        // add updated item
-        if (quantity !== 0) {
-            const newItem = structuredClone(item);
-            newItem.quantity = quantity;
-            newCart.push(newItem);
-            console.log(newCart);
-        }
-
-        // add rest of cart, if exists
-        if (index < cart.length - 1) {
-            newCart = newCart.concat(cart.slice(index + 1, cart.length));
-        }
-
-        setCart(newCart);
+    const addItemToCart = (item, quantity) => {
+        addToCart(item, quantity, setCart, cart);
+    };
+    const updateCartItemQuantity = (id, quantity) => {
+        updateCartQuantity(id, quantity, setCart, cart);
     };
 
     const toggleCartVisibility = () => {
@@ -57,8 +40,8 @@ const App = () => {
     return (
         <div>
             <NavBar />
-            <ShoppingCart cart={cart} updateQuantity={updateCartQuantity} />
-            <RouteSwitch />
+            <ShoppingCart cart={cart} updateQuantity={updateCartItemQuantity} />
+            <RouteSwitch addToCart={addItemToCart} />
             <button onClick={toggleCartVisibility}>cart</button>
         </div>
     );

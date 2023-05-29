@@ -1,6 +1,6 @@
 import ProductCard from "../Components/ProductCard";
 
-const Store = () => {
+const Store = ({ addToCart }) => {
     const storeItems = [
         { name: "prod 1", id: 1, price: 10, stock: 10 },
         { name: "prod 2", id: 2, price: 20, stock: 20 },
@@ -14,7 +14,7 @@ const Store = () => {
             <p>Buy something!</p>
             <div className="store-items">
                 {storeItems.map((m) => (
-                    <ProductCard product={m} key={m.id} />
+                    <ProductCard product={m} addToCart={addToCart} key={m.id} />
                 ))}
             </div>
         </div>
