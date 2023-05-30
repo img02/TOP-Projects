@@ -4,12 +4,6 @@ import RouteSwitch from "./Router/RouteSwitch";
 import { addToCart, updateCartQuantity } from "./lib/Cart";
 
 const App = () => {
-    // add shopping cart state here and component here
-    // add fn to update state
-    // add fn to update shopping cart
-    // add fn to 'checkout' (don't need to impl page)
-    // pass functions to routeswitch -> store/home page
-
     const testCart = [
         { name: "one", id: 1, price: 10, quantity: 1 },
         { name: "two", id: 2, price: 20, quantity: 2 },
