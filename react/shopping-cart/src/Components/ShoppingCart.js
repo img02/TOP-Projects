@@ -7,7 +7,11 @@ const ShoppingCart = ({ cart, updateQuantity }) => {
             this is the shopping cart
             <ul>
                 {cart.map((item) => (
-                    <CartItem item={item} updateQuantity={updateQuantity} />
+                    <CartItem
+                        item={item}
+                        cart={cart}
+                        updateQuantity={updateQuantity}
+                    />
                 ))}
             </ul>
         </div>
