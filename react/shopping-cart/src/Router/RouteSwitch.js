@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Home from "../Pages/Home";
 import Store from "../Pages/Store";
 
 const RouteSwitch = ({ addToCart }) => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path="./" element={<Home />}></Route>
                 <Route
@@ -12,7 +12,7 @@ const RouteSwitch = ({ addToCart }) => {
                     element={<Store addToCart={addToCart} />}
                 ></Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 export default RouteSwitch;
