@@ -1,5 +1,4 @@
 import { useState } from "react";
-import NavBar from "./Components/NavBar";
 import ShoppingCart from "./Components/ShoppingCart";
 import RouteSwitch from "./Router/RouteSwitch";
 import { addToCart, updateCartQuantity } from "./lib/Cart";
@@ -35,7 +34,6 @@ const App = () => {
 
     return (
         <div>
-            <NavBar />
             <ShoppingCart cart={cart} updateQuantity={updateCartItemQuantity} />
             <RouteSwitch addToCart={addItemToCart} />
             <button onClick={toggleCartVisibility}>cart</button>
