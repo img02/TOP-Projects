@@ -1,9 +1,11 @@
 .shopping-cart-main-hidden {
-    right: -30%;
+    right: -110%;
+    transition: right 0.7s ease 0s;
 }
 
 .shopping-cart-main-shown {
     right: 0px;
+    transition: right 0.25s ease 0s;
 }
 
 .shopping-cart-main-shown,
@@ -12,15 +14,14 @@
     border-width: 3px;
     background-color: #a4a4a4;
 
-    margin: 5px 5px;
+    margin: 5px 0px;
     padding: 5px 5px;
 
     position: fixed;
     top: 0px;
     bottom: 0px;
-    transition: right 0.55s ease-in-out 0s;
 
-    width: 22%;
+    width: 450px;
     min-width: 450px;
 
     overflow: auto;

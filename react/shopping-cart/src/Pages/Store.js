@@ -1,4 +1,5 @@
 import ProductCard from "../Components/ProductCard";
+import "../Assets/Store.css";
 
 const Store = ({ addToCart }) => {
     const storeItems = [
@@ -9,7 +10,7 @@ const Store = ({ addToCart }) => {
     ];
 
     return (
-        <div>
+        <div className="store-main-div">
             <h1>Store Page</h1>
             <p>Buy something!</p>
             <div className="store-items">

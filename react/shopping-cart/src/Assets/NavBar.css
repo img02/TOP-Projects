@@ -1,0 +1,15 @@
+.nav-bar-list {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding: 0 80px;
+
+    list-style-type: none;
+}
+
+.nav-bar-link {
+    border-style: outset;
+    padding: 0px 4px;
+    text-decoration: none;
+    color: black;
+}
