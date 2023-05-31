@@ -6,9 +6,9 @@ import "./Assets/App.css";
 
 const App = () => {
     const testCart = [
-        { name: "one", id: 1, price: 10, quantity: 1 },
-        { name: "two", id: 2, price: 20, quantity: 2 },
-        { name: "three", id: 3, price: 30, quantity: 3 }
+        { name: "prod 1", id: 1, price: 10, quantity: 1 },
+        { name: "prod 2", id: 2, price: 20, quantity: 2 },
+        { name: "prod 3", id: 3, price: 30, quantity: 3 }
     ];
     const [cart, setCart] = useState(testCart);
 
@@ -45,7 +45,7 @@ const App = () => {
                 className="cart-button"
                 onClick={toggleCartVisibility}
             >
-                cart
+                Cart
             </div>
         </div>
     );

@@ -12,7 +12,7 @@ const Store = ({ addToCart }) => {
     return (
         <div className="store-main-div">
             <h1>Store Page</h1>
-            <p>Buy something!</p>
+            <p>buy something!</p>
             <div className="store-items">
                 {storeItems.map((m) => (
                     <ProductCard product={m} addToCart={addToCart} key={m.id} />

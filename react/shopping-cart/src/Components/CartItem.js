@@ -2,9 +2,9 @@ const CartItem = ({ item, updateQuantity }) => {
     return (
         <li key={item.id}>
             <div>{item.name}</div>
-            <div>id: {item.id}</div>
-            <div>{item.price}</div>
-            <div>Quantity: {item.quantity} (del this later)</div>
+            <div>id. {item.id}</div>
+            <div>quantity. {item.quantity}</div>
+            <div>${item.price * item.quantity}</div>
 
             <div className="cart-item-quantity-div">
                 <button
