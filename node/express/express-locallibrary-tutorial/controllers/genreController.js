@@ -5,7 +5,8 @@ const Genre = require("../models/genre");
 
 // Display list of all Genre.
 exports.genre_list = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Genre list");
+    const genres = await Genre.find().sort({ name: 1 }).exec();
+    res.render("genre_list", { title: "Genres", genre_list: genres });
 });
 
 // Display detail page for a specific Genre.
